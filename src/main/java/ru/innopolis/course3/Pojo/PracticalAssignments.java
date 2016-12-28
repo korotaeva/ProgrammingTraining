@@ -43,6 +43,12 @@ public class PracticalAssignments implements Identified<Integer> {
         this.id = id;
     }
 
+    public PracticalAssignments(String name, String description, Subject subject) {
+        this.name = name;
+        this.description = description;
+        this.subject = subject;
+    }
+
     private Subject subject;
 
     public Integer getId() {

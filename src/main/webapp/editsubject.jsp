@@ -63,6 +63,27 @@
         </c:if>
 
     </fieldset>
+    <fieldset>
+        <legend>
+           Практические задания
+        </legend>
+        <a href="${pageContext.servletContext.contextPath}/practical/create//${subject.id}">Добавить практическое задание</a>
+
+        <table border="1">
+            <tr>
+                <td>Название</td>
+            </tr>
+            <c:forEach items="${Practicals}" var="practical" varStatus="status">
+                <tr valign="top">
+                    <td>${practical.name}</td>
+                    <td>
+                        <a href="${pageContext.servletContext.contextPath}/practical/edit/${practical.id}/${subject.id}">Редактировать/Просмотр</a>
+                        <a href="${pageContext.servletContext.contextPath}/practical/delete/${practical.id}/${subject.id}">Удалить</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </fieldset>
 
     <div class="button-row">
         <a href="${pageContext.request.contextPath}/subject/">Отмена</a> or <input type="submit" value="Сохранить" />

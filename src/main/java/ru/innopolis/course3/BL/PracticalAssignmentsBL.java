@@ -3,6 +3,7 @@ package ru.innopolis.course3.BL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.innopolis.course3.Pojo.PracticalAssignments;
+import ru.innopolis.course3.Pojo.Subject;
 import ru.innopolis.course3.dao.DaoFactory;
 import ru.innopolis.course3.dao.DataException;
 import ru.innopolis.course3.dao.UniversalDao;
@@ -39,5 +40,42 @@ public class PracticalAssignmentsBL {
             logger.error("Error", e);
         }
         return list;
+    }
+
+    public PracticalAssignments getByPK(Integer id){
+        PracticalAssignments practical = null;
+
+        try{
+            practical = (PracticalAssignments)practicalDao.getByPK(id);
+        } catch (DataException e) {
+            logger.error("Error", e);
+        }
+        return practical;
+    }
+
+    public PracticalAssignments create(PracticalAssignments practicalAssignments){
+        try{
+            practicalAssignments = (PracticalAssignments)practicalDao.createByObject(practicalAssignments);
+        } catch (DataException e) {
+            logger.error("Error", e);
+        }
+        return practicalAssignments;
+    }
+
+    public void delete(PracticalAssignments subject){
+        try{
+            practicalDao.delete(subject);
+        } catch (DataException e) {
+            logger.error("Error", e);
+        }
+
+    }
+
+    public void update(PracticalAssignments subject){
+        try{
+            practicalDao.update(subject);
+        } catch (DataException e) {
+            logger.error("Error", e);
+        }
     }
 }

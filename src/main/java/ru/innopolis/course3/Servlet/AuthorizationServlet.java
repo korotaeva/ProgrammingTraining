@@ -33,11 +33,13 @@ public class AuthorizationServlet extends HttpServlet {
             if (id != null){
                 HttpSession httpSession = req.getSession();
                 httpSession.setAttribute("id", id);
+                //User user = userBL.getByPK(id);
+                //httpSession.setAttribute("role", user.getRole());
             }
             else {
                 getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
             }
-            //User user = userBL.getByPK(id);
+
 
             req.getServletContext()
                     .getRequestDispatcher("/subject")

@@ -22,18 +22,18 @@ public class MySqlPracticalDao extends CrudJDBCDao<PracticalAssignments, Integer
 
     @Override
     public String getSelectQuery() {
-        return "SELECT id, name, password, email, phone, role FROM programming_training.practical_assignments";
+        return "SELECT id, name, description,subject FROM programming_training.practical_assignments";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO programming_training.practical_assignments (name, password, email, phone, role) \n" +
-                "VALUES (?, ?, ?, ?, ?);";
+        return "INSERT INTO programming_training.practical_assignments (name, description,subject) \n" +
+                "VALUES (?, ?, ?);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE programming_training.practical_assignments SET name= ? password = ? email = ? phone = ? role = ?  WHERE id= ?;";
+        return "UPDATE programming_training.practical_assignments SET `name`= ?, `description`= ?, subject = ? WHERE id= ?;";
     }
 
     @Override
@@ -61,6 +61,9 @@ public class MySqlPracticalDao extends CrudJDBCDao<PracticalAssignments, Integer
                 practicalById.setId(rs.getInt("id"));
                 practicalById.setName(rs.getString("name"));
                 practicalById.setDescription(rs.getString("description"));
+                Subject subject = new Subject();
+                subject.setId(rs.getInt("subject"));
+                practicalById.setSubject(subject);
                 //subject
                 result.add(practicalById);
             }

@@ -1,5 +1,9 @@
 package ru.innopolis.course3.Servlet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.innopolis.course3.BL.PracticalAssignmentsBL;
+import ru.innopolis.course3.Pojo.PracticalAssignments;
 import ru.innopolis.course3.Pojo.Subject;
 
 import javax.servlet.RequestDispatcher;
@@ -18,26 +22,32 @@ import ru.innopolis.course3.BL.SubjectBL;
 
 @WebServlet("/subject/*")
 public class SubjectServlet extends HttpServlet {
+    public static Logger logger = LoggerFactory.getLogger(SubjectServlet.class);
     private SubjectBL subjectBL;
     public SubjectServlet() {
         this.subjectBL = new SubjectBL();
     }
 
-    private Subject SubjectFromPK(String[] param, SubjectBL subjectBL){
+    private Subject SubjectFromPK(String[] param){
         Subject subject = null;
         if(param.length > 2){
-            int id = Integer.parseInt(param[2]);
-            subject = subjectBL.getByPK(id);
+            try {
+                int id = Integer.parseInt(param[2]);
+                subject = subjectBL.getByPK(id);
+            }catch (NumberFormatException e) {
+                logger.error("NumberFormatException", e);
+            }
         }
         return subject;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         StringBuffer requestURL = req.getRequestURL();
         int startIndex = requestURL.indexOf("subject");
         String[] param = new String(requestURL).substring(startIndex).split("/");
-        Subject subject = SubjectFromPK(param, subjectBL);
+        Subject subject = SubjectFromPK(param);
         String jsp = "/subject.jsp";
 
         if (param.length > 1) {
@@ -49,6 +59,8 @@ public class SubjectServlet extends HttpServlet {
                case "edit":
                    jsp = "/editsubject.jsp";
                    req.setAttribute("subject", subject);
+                   List<PracticalAssignments> practicals= new PracticalAssignmentsBL().getAll();
+                   req.setAttribute("Practicals", practicals);
                    break;
                case "delete":
                    subjectBL.delete(subject);
@@ -66,19 +78,28 @@ public class SubjectServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String description = req.getParameter("description");
-        String id = req.getParameter("id");
-        Subject subject;
+        StringBuffer requestURL = req.getRequestURL();
+        int startIndex = requestURL.indexOf("subject");
+        String[] param = new String(requestURL).substring(startIndex).split("/");
+        if(param.length > 1 && param[1].equals("save")){
+            String name = req.getParameter("name");
+            String description = req.getParameter("description");
+            String id = req.getParameter("id");
+            Subject subject;
 
-        if (id == null || id.isEmpty()) {
-            subject = new Subject(name, description);
-            subjectBL.create(subject);
-        } else {
-            subject = new Subject(name, description, Integer.parseInt(id));
-            subjectBL.update(subject);
+            if (id == null || id.isEmpty()) {
+                subject = new Subject(name, description);
+                subjectBL.create(subject);
+            } else {
+                subject = new Subject(name, description, Integer.parseInt(id));
+                subjectBL.update(subject);
+            }
+
+           /* resp.sendRedirect(req.getContextPath() + "/subject/");
+            String jsp = "/editsubject.jsp";
+            RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);
+            dispatcher.forward(req, resp);*/
         }
-
         resp.sendRedirect(req.getContextPath() + "/subject/");
         String jsp = "/editsubject.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);

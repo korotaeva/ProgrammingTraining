@@ -39,6 +39,7 @@ public class AddUser  extends HttpServlet {
             if (user != null){
                 HttpSession httpSession = req.getSession();
                 httpSession.setAttribute("id", user.getId());
+                //httpSession.setAttribute("role", user.getRole());
             }
 
             req.getServletContext()
