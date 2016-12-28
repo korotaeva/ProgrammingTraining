@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * Created by korot on 27.12.2016.
+ * Сервлет для регистрации
  */
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {

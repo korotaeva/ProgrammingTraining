@@ -1,7 +1,9 @@
 package ru.innopolis.course3.dao;
 
+/**
+ * Класс исключений для обработки ошибок неправильной реализации фабрики
+ */
 public class DataException extends Exception {
-
 
     public DataException() {
     }

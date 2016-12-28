@@ -14,7 +14,8 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * Created by korot on 24.12.2016.
+ *
+ * Бизнес сервер для работы с пользователями
  */
 public class UserBL {
 

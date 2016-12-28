@@ -13,7 +13,8 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * Created by korot on 23.12.2016.
+ *
+ * Бизнес сервер для работы с темами
  */
 public class SubjectBL {
     public static Logger logger = LoggerFactory.getLogger(SubjectBL.class);

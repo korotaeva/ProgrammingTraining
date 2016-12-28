@@ -4,6 +4,7 @@ import ru.innopolis.course3.dao.Identified;
 
 /**
  * Created by korot on 24.12.2016.
+ * Объект практические задания
  */
 public class PracticalAssignments implements Identified<Integer> {
     public PracticalAssignments() {

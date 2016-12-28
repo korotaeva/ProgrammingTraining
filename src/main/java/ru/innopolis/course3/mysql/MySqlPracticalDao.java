@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Реализациия класса практических заданий на mysql
+ */
 public class MySqlPracticalDao extends CrudJDBCDao<PracticalAssignments, Integer> {
 
     private class PracticalById extends PracticalAssignments {

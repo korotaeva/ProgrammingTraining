@@ -15,6 +15,7 @@ import java.io.IOException;
 
 /**
  * Created by korot on 28.12.2016.
+ * Сервлет для обработки авторизации
  */
 
 @WebServlet("/authorization")

@@ -4,6 +4,7 @@ import ru.innopolis.course3.dao.Identified;
 
 /**
  * Created by korot on 23.12.2016.
+ * Объект тема
  */
 public class Subject implements Identified<Integer> {
     public Subject() {

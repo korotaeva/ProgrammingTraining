@@ -2,6 +2,7 @@ package ru.innopolis.course3.Servlet;
 
 /**
  * Created by korot on 24.12.2016.
+ *
  */
 
 import org.slf4j.Logger;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет для практичексих заданий
+ */
 @WebServlet("/practical/*")
 public class PracticalServlet extends HttpServlet {
     public static Logger logger = LoggerFactory.getLogger(PracticalServlet.class);

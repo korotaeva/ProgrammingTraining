@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by korot on 23.12.2016.
+ * Сервлет для пользователей
  */
 
 @WebServlet("/user")

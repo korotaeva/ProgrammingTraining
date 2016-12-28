@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Created by korot on 29.12.2016.
+ * Фильтр сервлетов для безопасноти
+ * после авторизации
  */
 @WebFilter(value="/*")
 public class ServletFilter implements Filter {

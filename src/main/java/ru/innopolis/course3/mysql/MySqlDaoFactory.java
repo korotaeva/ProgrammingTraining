@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Фабрика объектов для работы с базой данных на mysql
+ */
 public class MySqlDaoFactory implements DaoFactory<Connection> {
 
     private String user = "root";//Логин пользователя

@@ -18,6 +18,7 @@ import ru.innopolis.course3.BL.SubjectBL;
 
 /**
  * Created by korot on 24.12.2016.
+ * Сервлет для тем
  */
 
 @WebServlet("/subject/*")

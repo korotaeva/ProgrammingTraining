@@ -4,6 +4,7 @@ import ru.innopolis.course3.dao.Identified;
 
 /**
  * Created by korot on 24.12.2016.
+ * Объект пользователь
  */
 public class User implements Identified<Integer> {
     public Integer getId() {

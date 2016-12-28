@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Реализациия класса тем на mysql
+ */
 public class MySqlSubjectDao extends CrudJDBCDao<Subject, Integer> {
 
 

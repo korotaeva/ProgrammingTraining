@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 /**
- * Created by korot on 26.12.2016.
+ *
  * Абстрактный класс предоставляющий базовую реализацию CRUD операций с использованием JDBC.
  *
  * @param <T>  тип объекта

@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Реализациия класса пользователей на mysql
+ */
 public class MySqlUserDao extends CrudJDBCDao<User, Integer> {
 
     private class UserById extends User {
