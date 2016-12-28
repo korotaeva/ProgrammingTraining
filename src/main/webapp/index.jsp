@@ -14,7 +14,7 @@
 <body>
 <br>
 <h1>Вход в систему</h1>
-<form action="registration" method="post">
+<form action="authorization" method="post">
   Пользователь: <input type="text" name="user" size="10"><br>
   Пароль: <input type="password" name="password" size="10"><br>
   <p>

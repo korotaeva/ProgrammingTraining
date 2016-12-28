@@ -64,8 +64,21 @@ public class User implements Identified<Integer> {
 
     }
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public User(Integer id, String name, String password, String email, String phone, Role role) {
         this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+    }
+
+    public User(String name, String password, String email, String phone, Role role) {
         this.name = name;
         this.password = password;
         this.email = email;

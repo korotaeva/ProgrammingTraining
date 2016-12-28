@@ -48,7 +48,7 @@
 
         <div>
             <label for="name">Тема</label> <input type="text" name="name"
-                                                    id="name" value="${subject.name}" />
+                                                    id="name"  value="${subject.name}" />
         </div>
 
         <div  valign="top">

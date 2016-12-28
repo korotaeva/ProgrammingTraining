@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1>Регистрация посетителей</h1>
-<form action="AddUser" method="post">
+<form action="adduser" method="post">
     Пользователь: <input type="text" name="user" size="10"><br>
     Пароль: <input type="password" name="password" size="10"><br>
     Email: <input type="text" name="email"><br>

@@ -13,6 +13,12 @@ import java.io.IOException;
  */
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registration.jsp");
+        dispatcher.forward(req, resp);
+        super.doPost(req, resp);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
