@@ -106,8 +106,6 @@ public class PracticalServlet extends HttpServlet {
             String name = req.getParameter("name");
             String description = req.getParameter("description");
             String id = req.getParameter("id");
-
-
             Subject subject = subjectBL.getByPK(idSubject);
 
             PracticalAssignments practical;
@@ -116,7 +114,7 @@ public class PracticalServlet extends HttpServlet {
                 practical = new PracticalAssignments(name, description, subject);
                 practicalBL.create(practical);
             } else {
-                practical = new PracticalAssignments(name, description, subject);
+                practical = new PracticalAssignments(name, description, subject, Integer.parseInt(id));
                 practicalBL.update(practical);
             }
         }
