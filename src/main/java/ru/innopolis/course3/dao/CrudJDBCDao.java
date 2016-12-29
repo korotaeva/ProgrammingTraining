@@ -110,6 +110,27 @@ public abstract class CrudJDBCDao<T extends Identified<PK>, PK extends Integer> 
     }
 
     @Override
+    public List<T> getByKey(String key, String name) throws DataException {
+        List<T> list;
+        String sql = getSelectQuery();
+        sql += " WHERE " + name+ " = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1,key);
+            ResultSet rs = statement.executeQuery();
+            list = parseResultSet(rs);
+        } catch (Exception e) {
+            throw new DataException(e);
+        }
+        if (list == null || list.size() == 0) {
+            throw new DataException("Record with " + name +" = " + key + " not found.");
+        }
+
+        return list;
+    }
+
+
+
+    @Override
     public void update(T object) throws DataException {
         String sql = getUpdateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql);) {

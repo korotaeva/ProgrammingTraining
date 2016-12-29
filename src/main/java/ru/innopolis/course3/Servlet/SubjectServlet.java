@@ -60,7 +60,7 @@ public class SubjectServlet extends HttpServlet {
                case "edit":
                    jsp = "/editsubject.jsp";
                    req.setAttribute("subject", subject);
-                   List<PracticalAssignments> practicals= new PracticalAssignmentsBL().getAll();
+                   List<PracticalAssignments> practicals= new PracticalAssignmentsBL().getAllBySubject(subject.getId().toString());
                    req.setAttribute("Practicals", practicals);
                    break;
                case "delete":

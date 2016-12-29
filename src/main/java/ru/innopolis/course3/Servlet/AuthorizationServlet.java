@@ -40,14 +40,10 @@ public class AuthorizationServlet extends HttpServlet {
             if (id != null){
                 HttpSession httpSession = req.getSession();
                 httpSession.setAttribute("id", id);
-                //User user = userBL.getByPK(id);
-                //httpSession.setAttribute("role", user.getRole());
             }
             else {
                 getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
             }
-
-
             req.getServletContext()
                     .getRequestDispatcher("/subject")
                     .forward(req, resp);
@@ -59,10 +55,4 @@ public class AuthorizationServlet extends HttpServlet {
         super.doPost(req, resp);
     }
 
-  /*  @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registration.jsp");
-        dispatcher.forward(req, resp);
-        super.doGet(req, resp);
-    }*/
 }

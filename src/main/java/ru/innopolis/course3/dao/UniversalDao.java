@@ -21,6 +21,9 @@ public interface UniversalDao<T extends Identified<PK>, PK extends Serializable>
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
     public T getByPK(PK key) throws DataException;
 
+    /** Возвращает объект соответствующий записи с первичным ключом key или null */
+    public List<T> getByKey(String key, String name) throws DataException;
+
     /** Сохраняет состояние объекта в базе данных */
     public void update(T object) throws DataException;
 
