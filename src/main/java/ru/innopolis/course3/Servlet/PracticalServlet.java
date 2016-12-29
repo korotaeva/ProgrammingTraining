@@ -81,6 +81,7 @@ public class PracticalServlet extends HttpServlet {
                     break;
                 case "delete":
                     practicalBL.delete(practical);
+                    resp.sendRedirect(req.getContextPath() + "/subject/edit/" + idSubject);
                     break;
             }
         }

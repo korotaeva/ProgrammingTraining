@@ -33,7 +33,7 @@
 
 
 <form method="post"
-      action="${pageContext.request.contextPath}/practical/save">
+      action="${pageContext.request.contextPath}/practical/save//${subjectid}">
     <fieldset>
         <legend>
             <c:choose>

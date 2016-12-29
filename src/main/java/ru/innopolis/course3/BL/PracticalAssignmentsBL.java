@@ -47,7 +47,6 @@ public class PracticalAssignmentsBL {
         List<PracticalAssignments> list = null;
 
         try{
-            //list = practicalDao.getAllBySubject();
             list = (List<PracticalAssignments>) practicalDao.getByKey(subject,"subject");
         } catch (DataException e) {
             logger.error("Error", e);
@@ -57,7 +56,6 @@ public class PracticalAssignmentsBL {
 
     public PracticalAssignments getByPK(Integer id){
         PracticalAssignments practical = null;
-
         try{
             practical = (PracticalAssignments)practicalDao.getByPK(id);
         } catch (DataException e) {
