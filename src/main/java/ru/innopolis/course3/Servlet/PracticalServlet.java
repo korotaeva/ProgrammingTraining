@@ -76,6 +76,7 @@ public class PracticalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ctx = getServletContext();
+        req.setCharacterEncoding("UTF-8");
         String[] param = getParam(req.getRequestURL());
         PracticalAssignments practical = null;
         try {
@@ -140,6 +141,7 @@ public class PracticalServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ctx = getServletContext();
+        req.setCharacterEncoding("UTF-8");
         String[] param = getParam(req.getRequestURL());
         Integer idSubject = getIdSubject(param);
         if(idSubject != null)

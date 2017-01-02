@@ -56,6 +56,7 @@ public class SubjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ctx = getServletContext();
+        req.setCharacterEncoding("UTF-8");
         StringBuffer requestURL = req.getRequestURL();
         int startIndex = requestURL.indexOf("subject");
         String[] param = new String(requestURL).substring(startIndex).split("/");
@@ -127,6 +128,7 @@ public class SubjectServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ctx = getServletContext();
+        req.setCharacterEncoding("UTF-8");
         StringBuffer requestURL = req.getRequestURL();
         int startIndex = requestURL.indexOf("subject");
         String[] param = new String(requestURL).substring(startIndex).split("/");

@@ -56,6 +56,7 @@ public class AuthorizationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ctx = getServletContext();
+        req.setCharacterEncoding("UTF-8");
         if (req.getParameter("save") != null){
             String name = req.getParameter("user");
             String password = req.getParameter("password");
