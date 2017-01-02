@@ -100,13 +100,6 @@ public class PracticalServlet extends HttpServlet {
             switch (param[1]){
                 case "create":
                     jsp = "/editpractical.jsp";
-                   /* try {
-                        practicalBL.create(practical);
-                    }
-                    catch (DataException e){
-                        ErrorProcessing("Ошибка при создании практических заданий", e);
-                        ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
-                    }*/
                     break;
                 case "edit":
                     jsp = "/editpractical.jsp";

@@ -79,20 +79,16 @@ public class SubjectServlet extends HttpServlet {
            switch (param[1]){
                case "create":
                    jsp = "/editsubject.jsp";
-                  /* try {
-                       subjectBL.create(subject);
-                   }
-                   catch (DataException e){
-                       ErrorProcessing("Ошибка при создании темы", e);
-                       ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
-                   }*/
+
                    break;
                case "edit":
                    jsp = "/editsubject.jsp";
                    req.setAttribute("subject", subject);
                    try {
-                       List<PracticalAssignments> practicals= new PracticalAssignmentsBL().getAllBySubject(subject.getId().toString());
-                       req.setAttribute("Practicals", practicals);
+                       if(subject != null){
+                           List<PracticalAssignments> practicals= new PracticalAssignmentsBL().getAllBySubject(subject.getId().toString());
+                           req.setAttribute("Practicals", practicals);
+                       }
                    }
                    catch (DataException e){
                        ErrorProcessing("Ошибка при получении списка практичексих заданий", e);
