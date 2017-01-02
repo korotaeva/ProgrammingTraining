@@ -78,13 +78,13 @@ public class SubjectServlet extends HttpServlet {
            switch (param[1]){
                case "create":
                    jsp = "/editsubject.jsp";
-                   try {
+                  /* try {
                        subjectBL.create(subject);
                    }
                    catch (DataException e){
                        ErrorProcessing("Ошибка при создании темы", e);
                        ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
-                   }
+                   }*/
                    break;
                case "edit":
                    jsp = "/editsubject.jsp";

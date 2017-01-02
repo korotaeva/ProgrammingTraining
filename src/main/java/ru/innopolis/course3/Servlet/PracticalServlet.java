@@ -45,7 +45,7 @@ public class PracticalServlet extends HttpServlet {
 
     private PracticalAssignments PracticalFromPK(String[] param) throws DataException {
         PracticalAssignments practicalAssignments = null;
-        if(param.length > 2 && param[2] != null ){
+        if(param.length > 2 && param[2] != null && !param[2].equals("")){
             int id = Integer.parseInt(param[2]);
             practicalAssignments = practicalBL.getByPK(id);
         }
@@ -86,7 +86,7 @@ public class PracticalServlet extends HttpServlet {
             ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
         }
         catch (NumberFormatException e) {
-            ErrorProcessing("Не корректный формат ключа", e);
+            ErrorProcessing("Некорректный формат ключа", e);
             ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
         }
 
@@ -99,13 +99,13 @@ public class PracticalServlet extends HttpServlet {
             switch (param[1]){
                 case "create":
                     jsp = "/editpractical.jsp";
-                    try {
+                   /* try {
                         practicalBL.create(practical);
                     }
                     catch (DataException e){
                         ErrorProcessing("Ошибка при создании практических заданий", e);
                         ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
-                    }
+                    }*/
                     break;
                 case "edit":
                     jsp = "/editpractical.jsp";
