@@ -12,6 +12,9 @@
 <head>
     <title>Темы</title>
 </head>
+
+<a  valign="top" href="${pageContext.servletContext.contextPath}/logout">Выйти</a>
+
 <h1>Список тем</h1>
 
 <a href="${pageContext.servletContext.contextPath}/subject/create">Добавить тему</a>

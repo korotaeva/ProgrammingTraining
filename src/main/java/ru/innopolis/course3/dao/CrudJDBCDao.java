@@ -121,9 +121,9 @@ public abstract class CrudJDBCDao<T extends Identified<PK>, PK extends Integer> 
         } catch (Exception e) {
             throw new DataException(e);
         }
-        if (list == null || list.size() == 0) {
+       /* if (list == null || list.size() == 0) {
             throw new DataException("Record with " + name +" = " + key + " not found.");
-        }
+        }*/
 
         return list;
     }

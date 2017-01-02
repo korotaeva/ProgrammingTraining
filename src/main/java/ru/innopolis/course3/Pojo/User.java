@@ -53,6 +53,7 @@ public class User implements Identified<Integer> {
     private String email;
     private String phone;
 
+
     public Role getRole() {
         return role;
     }

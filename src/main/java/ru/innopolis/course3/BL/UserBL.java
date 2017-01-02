@@ -1,5 +1,7 @@
 package ru.innopolis.course3.BL;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.innopolis.course3.Pojo.Subject;
@@ -10,8 +12,10 @@ import ru.innopolis.course3.dao.UniversalDao;
 import ru.innopolis.course3.mysql.MySqlDaoFactory;
 import ru.innopolis.course3.mysql.MySqlUserDao;
 
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -50,6 +54,14 @@ public class UserBL {
     public User create(User user) throws DataException {
         return (User)userDao.createByObject(user);
     }
+
+    public static String md5Apache(String st, String salt) {
+
+        String md5Hex = DigestUtils.md5Hex(st + salt);
+
+        return md5Hex;
+    }
+
 
 
 }

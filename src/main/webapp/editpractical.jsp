@@ -28,6 +28,7 @@
 </script>
 
 <body>
+<a  valign="top" href="${pageContext.servletContext.contextPath}/logout">Выйти</a>
 
 <h1>Практическое задание</h1>
 

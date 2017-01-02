@@ -1,5 +1,6 @@
 package ru.innopolis.course3.Servlet;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.innopolis.course3.BL.SubjectBL;
@@ -50,6 +51,8 @@ public class AuthorizationServlet extends HttpServlet {
         ctx.setAttribute("error", errorStr);
     }
 
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ctx = getServletContext();
@@ -58,7 +61,7 @@ public class AuthorizationServlet extends HttpServlet {
             String password = req.getParameter("password");
             String email = req.getParameter("email");
             String phone = req.getParameter("phone");
-            User user = new User(name,password,email,phone, Role.ROLE_USER);
+            User user = new User(name,userBL.md5Apache(password,name),email,phone, Role.ROLE_USER);
             try {
                 user = userBL.create(user);
             }
@@ -82,7 +85,7 @@ public class AuthorizationServlet extends HttpServlet {
             String password = req.getParameter("password");
             Integer id = null;
             try {
-                id = userBL.getIdUser(name,password);
+                id = userBL.getIdUser(name,userBL.md5Apache(password, name));
             }
             catch (DataException e){
                 ErrorProcessing("Ошибка при получении польвателя по логину и паролю", e);

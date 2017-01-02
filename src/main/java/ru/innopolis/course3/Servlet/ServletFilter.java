@@ -32,11 +32,13 @@ public class ServletFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/authorization";
+        String logoutURI = request.getContextPath() + "/logout";
         request.getRequestURI();
         boolean loggedIn = session != null && session.getAttribute("id") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
+        boolean logoutRequest = request.getRequestURI().equals(logoutURI);
 
-        if (loggedIn || loginRequest) {
+        if (loggedIn || loginRequest || logoutRequest) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);
