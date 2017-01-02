@@ -32,7 +32,7 @@ public class ServletFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/authorization";
-
+        request.getRequestURI();
         boolean loggedIn = session != null && session.getAttribute("id") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
 

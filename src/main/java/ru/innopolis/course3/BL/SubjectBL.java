@@ -17,68 +17,36 @@ import java.util.List;
  * Бизнес сервер для работы с темами
  */
 public class SubjectBL {
-    public static Logger logger = LoggerFactory.getLogger(SubjectBL.class);
 
     DaoFactory factory;
     Connection connection;
     UniversalDao subjectDao;
 
-    public SubjectBL() {
-        try{
-            factory = new MySqlDaoFactory();
-            connection = (Connection) factory.getContext();
-            subjectDao = factory.getDao(connection, Subject.class);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public SubjectBL() throws DataException {
+        factory = new MySqlDaoFactory();
+        connection = (Connection) factory.getContext();
+        subjectDao = factory.getDao(connection, Subject.class);
     }
 
-    public List<Subject> getAll(){
-        List<Subject> list = null;
-
-        try{
-            list = subjectDao.getAll();
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public List<Subject> getAll() throws DataException {
+        List<Subject> list = subjectDao.getAll();
         return list;
     }
 
-    public Subject create(Subject subject){
-        try{
-            subject = (Subject)subjectDao.createByObject(subject);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-        return subject;
+    public Subject create(Subject subject) throws DataException {
+        return (Subject)subjectDao.createByObject(subject);
     }
 
-    public void delete(Subject subject){
-        try{
-            subjectDao.delete(subject);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-
+    public void delete(Subject subject) throws DataException {
+        subjectDao.delete(subject);
     }
 
-    public void update(Subject subject){
-        try{
-            subjectDao.update(subject);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public void update(Subject subject) throws DataException {
+        subjectDao.update(subject);
     }
 
-    public Subject getByPK(Integer id){
-        Subject subject = null;
-
-        try{
-            subject = (Subject)subjectDao.getByPK(id);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-        return subject;
+    public Subject getByPK(Integer id) throws DataException {
+        return (Subject)subjectDao.getByPK(id);
     }
 
 

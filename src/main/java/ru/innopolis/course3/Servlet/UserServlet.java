@@ -1,9 +1,13 @@
 package ru.innopolis.course3.Servlet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.innopolis.course3.BL.UserBL;
 import ru.innopolis.course3.Pojo.User;
+import ru.innopolis.course3.dao.DataException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +23,28 @@ import java.util.List;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
+    public static Logger logger = LoggerFactory.getLogger(UserServlet.class);
+
+    private void ErrorProcessing(String errorStr, Exception e){
+        logger.error(errorStr, e);
+        ctx.setAttribute("error", errorStr);
+    }
+
+    private ServletContext ctx;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ctx = getServletContext();
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/user.jsp");
-        List<User> subject= new UserBL().getAll();
+        List<User> subject = null;
+        try {
+            subject= new UserBL().getAll();
+        }
+        catch (DataException e){
+            ErrorProcessing("Ошибка получении списка пользователей", e);
+            ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+        }
+
         req.setAttribute("Users", subject);
         dispatcher.forward(req, resp);
         super.doGet(req, resp);

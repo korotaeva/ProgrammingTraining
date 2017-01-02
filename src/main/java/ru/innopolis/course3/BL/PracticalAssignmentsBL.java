@@ -17,76 +17,39 @@ import java.util.List;
  * Бизнес сервер для работы с практическими заданиями
  */
 public class PracticalAssignmentsBL {
-    public static Logger logger = LoggerFactory.getLogger(SubjectBL.class);
     DaoFactory factory;
     Connection connection;
     UniversalDao practicalDao;
 
-    public PracticalAssignmentsBL() {
-        try{
-            factory = new MySqlDaoFactory();
-            connection = (Connection) factory.getContext();
-            practicalDao = factory.getDao(connection, PracticalAssignments.class);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public PracticalAssignmentsBL() throws DataException {
+        factory = new MySqlDaoFactory();
+        connection = (Connection) factory.getContext();
+        practicalDao = factory.getDao(connection, PracticalAssignments.class);
     }
 
-    public List<PracticalAssignments> getAll(){
-        List<PracticalAssignments> list = null;
-
-        try{
-            list = practicalDao.getAll();
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public List<PracticalAssignments> getAll() throws DataException {
+        List<PracticalAssignments> list = practicalDao.getAll();
         return list;
     }
 
-    public List<PracticalAssignments> getAllBySubject(String subject){
-        List<PracticalAssignments> list = null;
-
-        try{
-            list = (List<PracticalAssignments>) practicalDao.getByKey(subject,"subject");
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public List<PracticalAssignments> getAllBySubject(String subject) throws DataException {
+        List<PracticalAssignments> list =  (List<PracticalAssignments>) practicalDao.getByKey(subject,"subject");
         return list;
     }
 
-    public PracticalAssignments getByPK(Integer id){
-        PracticalAssignments practical = null;
-        try{
-            practical = (PracticalAssignments)practicalDao.getByPK(id);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-        return practical;
+    public PracticalAssignments getByPK(Integer id) throws DataException {
+        return (PracticalAssignments)practicalDao.getByPK(id);
     }
 
-    public PracticalAssignments create(PracticalAssignments practicalAssignments){
-        try{
-            practicalAssignments = (PracticalAssignments)practicalDao.createByObject(practicalAssignments);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-        return practicalAssignments;
+    public PracticalAssignments create(PracticalAssignments practicalAssignments) throws DataException {
+        return (PracticalAssignments)practicalDao.createByObject(practicalAssignments);
     }
 
-    public void delete(PracticalAssignments subject){
-        try{
-            practicalDao.delete(subject);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-
+    public void delete(PracticalAssignments subject) throws DataException {
+        practicalDao.delete(subject);
     }
 
-    public void update(PracticalAssignments subject){
-        try{
-            practicalDao.update(subject);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public void update(PracticalAssignments subject) throws DataException {
+        practicalDao.update(subject);
     }
 }

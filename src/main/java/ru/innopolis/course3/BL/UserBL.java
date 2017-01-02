@@ -23,14 +23,10 @@ public class UserBL {
     Connection connection;
     UniversalDao userDao;
 
-    public UserBL() {
-        try{
-            factory = new MySqlDaoFactory();
-            connection = (Connection) factory.getContext();
-            userDao = factory.getDao(connection, User.class);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public UserBL() throws DataException {
+        factory = new MySqlDaoFactory();
+        connection = (Connection) factory.getContext();
+        userDao = factory.getDao(connection, User.class);
     }
 
     public UserBL(DaoFactory factory, Connection connection) {
@@ -38,47 +34,21 @@ public class UserBL {
         this.connection = connection;
     }
 
-    public static Logger logger = LoggerFactory.getLogger(SubjectBL.class);
-
-    public List<User> getAll(){
-        List<User> list = null;
-
-        try{
-            list = userDao.getAll();
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
+    public List<User> getAll() throws DataException {
+        List<User> list = userDao.getAll();
         return list;
     }
 
-    public User getByPK(Integer id){
-        User user = null;
-        try{
-            user = (User)userDao.getByPK(id);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-        return user;
+    public User getByPK(Integer id) throws DataException {
+        return (User)userDao.getByPK(id);
     }
 
-    public Integer getIdUser(String name, String password){
-        Integer id = null;
-        try {
-            id = MySqlUserDao.getUserId(name, password);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-
-        return id;
+    public Integer getIdUser(String name, String password) throws DataException {
+        return MySqlUserDao.getUserId(name, password);
     }
 
-    public User create(User user){
-        try{
-            user = (User)userDao.createByObject(user);
-        } catch (DataException e) {
-            logger.error("Error", e);
-        }
-        return user;
+    public User create(User user) throws DataException {
+        return (User)userDao.createByObject(user);
     }
 
 

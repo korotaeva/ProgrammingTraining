@@ -100,20 +100,4 @@ public class MySqlPracticalDao extends CrudJDBCDao<PracticalAssignments, Integer
         }
     }
 
-
-  /*  public static Integer getAllBySubject(String name, String password) throws DataException {
-        Integer id = null;
-        String sql = "SELECT id FROM programming_training.user where name = ? and password = ?;";
-        try (PreparedStatement statement = connections.prepareStatement(sql)) {
-            statement.setString(1, name);
-            statement.setString(2, password);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                id = rs.getInt("id");
-            }
-        } catch (Exception e) {
-            throw new DataException(e);
-        }
-        return id;
-    }*/
 }

@@ -11,8 +11,10 @@ import ru.innopolis.course3.BL.PracticalAssignmentsBL;
 import ru.innopolis.course3.BL.SubjectBL;
 import ru.innopolis.course3.Pojo.PracticalAssignments;
 import ru.innopolis.course3.Pojo.Subject;
+import ru.innopolis.course3.dao.DataException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,20 +32,24 @@ public class PracticalServlet extends HttpServlet {
     private PracticalAssignmentsBL practicalBL;
     private SubjectBL subjectBL;
     public PracticalServlet() {
-        this.practicalBL = new PracticalAssignmentsBL();
-        this.subjectBL = new SubjectBL();
+        try {
+            this.practicalBL = new PracticalAssignmentsBL();
+            this.subjectBL = new SubjectBL();
+        }
+        catch (DataException e){
+            ErrorProcessing("Ошибка при инициализации темы и списка практических заданий", e);
+            ctx.getRequestDispatcher("/error.jsp");
+        }
+
     }
 
-    private PracticalAssignments PracticalFromPK(String[] param){
+    private PracticalAssignments PracticalFromPK(String[] param) throws DataException {
         PracticalAssignments practicalAssignments = null;
         if(param.length > 2 && param[2] != null ){
-            try {
-                int id = Integer.parseInt(param[2]);
-                practicalAssignments = practicalBL.getByPK(id);
-            }catch (NumberFormatException e) {
-                logger.error("NumberFormatException", e);
-            }
+            int id = Integer.parseInt(param[2]);
+            practicalAssignments = practicalBL.getByPK(id);
         }
+
         return practicalAssignments;
     }
 
@@ -60,10 +66,30 @@ public class PracticalServlet extends HttpServlet {
         String[] param = new String(requestURL).substring(startIndex).split("/");
         return param;
     }
+
+    private ServletContext ctx;
+    private void ErrorProcessing(String errorStr, Exception e){
+        logger.error(errorStr, e);
+        ctx.setAttribute("error", errorStr);
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ctx = getServletContext();
         String[] param = getParam(req.getRequestURL());
-        PracticalAssignments practical = PracticalFromPK(param);
+        PracticalAssignments practical = null;
+        try {
+            practical = PracticalFromPK(param);
+        }
+        catch (DataException e){
+            ErrorProcessing("Ошибка при чтении практического задания по ключу", e);
+            ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+        }
+        catch (NumberFormatException e) {
+            ErrorProcessing("Не корректный формат ключа", e);
+            ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+        }
+
         String jsp = "/editsubject.jsp";
         Integer idSubject = getIdSubject(param);
         if(idSubject != null)
@@ -73,21 +99,38 @@ public class PracticalServlet extends HttpServlet {
             switch (param[1]){
                 case "create":
                     jsp = "/editpractical.jsp";
-                    practicalBL.create(practical);
+                    try {
+                        practicalBL.create(practical);
+                    }
+                    catch (DataException e){
+                        ErrorProcessing("Ошибка при создании практических заданий", e);
+                        ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+                    }
                     break;
                 case "edit":
                     jsp = "/editpractical.jsp";
                     req.setAttribute("practical", practical);
                     break;
                 case "delete":
-                    practicalBL.delete(practical);
+                    try {
+                        practicalBL.delete(practical);
+                    }
+                    catch (DataException e){
+                        ErrorProcessing("Ошибка при удалении практического задания", e);
+                        ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+                    }
                     resp.sendRedirect(req.getContextPath() + "/subject/edit/" + idSubject);
                     break;
             }
         }
-
-        List<PracticalAssignments> practicals= practicalBL.getAll();
-        req.setAttribute("Practicals", practicals);
+        try {
+            List<PracticalAssignments> practicals= practicalBL.getAll();
+            req.setAttribute("Practicals", practicals);
+        }
+        catch (DataException e){
+            ErrorProcessing("Ошибка при получении списка практических заданий", e);
+            ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+        }
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);
         dispatcher.forward(req, resp);
@@ -96,7 +139,7 @@ public class PracticalServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        ctx = getServletContext();
         String[] param = getParam(req.getRequestURL());
         Integer idSubject = getIdSubject(param);
         if(idSubject != null)
@@ -106,16 +149,39 @@ public class PracticalServlet extends HttpServlet {
             String name = req.getParameter("name");
             String description = req.getParameter("description");
             String id = req.getParameter("id");
-            Subject subject = subjectBL.getByPK(idSubject);
+            Subject subject = null;
+            try {
+                subject = subjectBL.getByPK(idSubject);
+            }
+            catch (DataException e){
+                ErrorProcessing("Не найдена тема с данным ключом", e);
+                ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+            }
+
 
             PracticalAssignments practical;
 
+
             if (id == null || id.isEmpty()) {
                 practical = new PracticalAssignments(name, description, subject);
-                practicalBL.create(practical);
+                try {
+                    practicalBL.create(practical);
+                }
+                catch (DataException e){
+                    ErrorProcessing("Ошибка при создании практического задания", e);
+                    ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+                }
+
             } else {
                 practical = new PracticalAssignments(name, description, subject, Integer.parseInt(id));
-                practicalBL.update(practical);
+                try {
+                    practicalBL.update(practical);
+                }
+                catch (DataException e){
+                    ErrorProcessing("Ошибка при обновлении практического задания", e);
+                    ctx.getRequestDispatcher("/error.jsp").forward(req, resp);
+                }
+
             }
         }
         resp.sendRedirect(req.getContextPath() + "/subject/");
