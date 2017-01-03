@@ -42,7 +42,7 @@ public class AuthorizationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-        super.doGet(req, resp);
+
     }
     private ServletContext ctx;
 
@@ -106,7 +106,7 @@ public class AuthorizationServlet extends HttpServlet {
             ctx.getRequestDispatcher("/registration")
                     .forward(req, resp);;
         }
-        super.doPost(req, resp);
+
     }
 
 }

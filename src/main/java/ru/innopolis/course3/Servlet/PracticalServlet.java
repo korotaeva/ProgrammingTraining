@@ -128,7 +128,6 @@ public class PracticalServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);
         dispatcher.forward(req, resp);
-        super.doGet(req, resp);
     }
 
     @Override
@@ -183,6 +182,5 @@ public class PracticalServlet extends HttpServlet {
         String jsp = "/editsubject.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);
         dispatcher.forward(req, resp);
-        super.doPost(req, resp);
     }
 }

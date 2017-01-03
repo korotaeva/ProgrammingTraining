@@ -118,7 +118,6 @@ public class SubjectServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);
         dispatcher.forward(req, resp);
-        super.doGet(req, resp);
     }
 
     @Override
@@ -160,6 +159,5 @@ public class SubjectServlet extends HttpServlet {
         String jsp = "/editsubject.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(jsp);
         dispatcher.forward(req, resp);
-        super.doPost(req, resp);
     }
 }

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ProgrammingTraining">
+    <output-path>$PROJECT_DIR$/build/classes/artifacts/ProgrammingTraining</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ProgrammingTraining_main/web/Web Gradle : ProgrammingTraining.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ProgrammingTraining_main" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

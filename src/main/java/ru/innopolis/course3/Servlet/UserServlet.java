@@ -47,6 +47,5 @@ public class UserServlet extends HttpServlet {
 
         req.setAttribute("Users", subject);
         dispatcher.forward(req, resp);
-        super.doGet(req, resp);
     }
 }

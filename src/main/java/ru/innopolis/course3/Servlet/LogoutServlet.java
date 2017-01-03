@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
         String loginURI = req.getContextPath() + "/authorization";
         resp.sendRedirect(loginURI);
 
-        super.doGet(req, resp);
+
     }
 
     @Override
@@ -30,6 +30,6 @@ public class LogoutServlet extends HttpServlet {
         String loginURI = req.getContextPath() + "/authorization";
         resp.sendRedirect(loginURI);
 
-        super.doPost(req, resp);
+
     }
 }
