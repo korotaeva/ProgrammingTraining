@@ -19,8 +19,6 @@ public class LogoutServlet extends HttpServlet {
         session.invalidate();
         String loginURI = req.getContextPath() + "/authorization";
         resp.sendRedirect(loginURI);
-
-
     }
 
     @Override
@@ -29,7 +27,5 @@ public class LogoutServlet extends HttpServlet {
         session.invalidate();
         String loginURI = req.getContextPath() + "/authorization";
         resp.sendRedirect(loginURI);
-
-
     }
 }

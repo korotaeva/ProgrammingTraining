@@ -14,8 +14,10 @@
     <title>Материал</title>
 </head>
 <style type="text/css">
+
     <%@include file="/css/jquery.cleditor.css"%>
 </style>
+
 <script >
     <%@include file="/js/jquery-1.8.2.min.js"%>
 </script >
@@ -26,7 +28,8 @@
 <script>
     $(document).ready(function () { $("#description").cleditor(); });
 </script>
-
+<%--<img src="/getImage.action?imageId=css/images/toolbar.gif"/>--%>
+<img src="C:\Projects\Java\Innopolis\Homeworks\ProgrammingTraining2\src\main\webapp\css\images\toolbar.gif"/>
 <body>
 <a  valign="top" href="${pageContext.servletContext.contextPath}/logout">Выйти</a>
 

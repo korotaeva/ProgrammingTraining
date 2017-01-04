@@ -3,7 +3,7 @@ package ru.innopolis.course3.mysql;
 
 import ru.innopolis.course3.Pojo.Role;
 import ru.innopolis.course3.Pojo.User;
-import ru.innopolis.course3.dao.CrudJDBCDao;
+import ru.innopolis.course3.dao.AbstractJDBCDao;
 import ru.innopolis.course3.dao.DataException;
 
 import java.sql.Connection;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Реализациия класса пользователей на mysql
  */
-public class MySqlUserDao extends CrudJDBCDao<User, Integer> {
+public class MySqlUserDao extends AbstractJDBCDao<User, Integer> {
 
     private class UserById extends User {
         public void setId(int id) {

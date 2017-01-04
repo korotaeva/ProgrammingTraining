@@ -56,9 +56,7 @@ public class UserBL {
     }
 
     public static String md5Apache(String st, String salt) {
-
         String md5Hex = DigestUtils.md5Hex(st + salt);
-
         return md5Hex;
     }
 

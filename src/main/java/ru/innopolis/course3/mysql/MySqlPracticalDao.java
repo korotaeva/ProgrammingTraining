@@ -2,7 +2,7 @@ package ru.innopolis.course3.mysql;
 
 import ru.innopolis.course3.Pojo.PracticalAssignments;
 import ru.innopolis.course3.Pojo.Subject;
-import ru.innopolis.course3.dao.CrudJDBCDao;
+import ru.innopolis.course3.dao.AbstractJDBCDao;
 import ru.innopolis.course3.dao.DataException;
 
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Реализациия класса практических заданий на mysql
  */
-public class MySqlPracticalDao extends CrudJDBCDao<PracticalAssignments, Integer> {
+public class MySqlPracticalDao extends AbstractJDBCDao<PracticalAssignments, Integer> {
 
     private class PracticalById extends PracticalAssignments {
         public void setId(int id) {

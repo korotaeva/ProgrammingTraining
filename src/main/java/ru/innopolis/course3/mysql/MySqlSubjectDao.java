@@ -1,10 +1,8 @@
 package ru.innopolis.course3.mysql;
 
 
-import ru.innopolis.course3.Pojo.Role;
 import ru.innopolis.course3.Pojo.Subject;
-import ru.innopolis.course3.Pojo.User;
-import ru.innopolis.course3.dao.CrudJDBCDao;
+import ru.innopolis.course3.dao.AbstractJDBCDao;
 import ru.innopolis.course3.dao.DataException;
 
 import java.sql.Connection;
@@ -15,7 +13,7 @@ import java.util.List;
 /**
  * Реализациия класса тем на mysql
  */
-public class MySqlSubjectDao extends CrudJDBCDao<Subject, Integer> {
+public class MySqlSubjectDao extends AbstractJDBCDao<Subject, Integer> {
 
 
 

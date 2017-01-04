@@ -3,6 +3,7 @@ package ru.innopolis.course3.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 /**
  *
@@ -11,7 +12,7 @@ import java.util.List;
  * @param <T>  тип объекта
  * @param <PK> тип первичного ключа
  */
-public abstract class CrudJDBCDao<T extends Identified<PK>, PK extends Integer> implements UniversalDao<T, PK> {
+public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integer> implements UniversalDao<T, PK> {
 
     private Connection connection;
 
@@ -176,7 +177,9 @@ public abstract class CrudJDBCDao<T extends Identified<PK>, PK extends Integer> 
         return list;
     }
 
-    public CrudJDBCDao(Connection connection) {
+    public AbstractJDBCDao(Connection connection) {
         this.connection = connection;
     }
+
+
 }
